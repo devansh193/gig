@@ -1,46 +1,41 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
-import { Button } from "../ui/button";
-
+const items = [
+  {
+    id: 1,
+    name: "EXPRESS DELIVERY",
+    desc: "Express delivery all over India from our bag company",
+  },
+  {
+    id: 2,
+    name: "PAYMENT IN 3X",
+    desc: "Take advantage of a payment in 3x without fees from of purpose",
+  },
+  {
+    id: 2,
+    name: "BEAUTIFY DESIGN",
+    desc: "Get the beautiful designs.",
+  },
+];
 export const Community = () => {
   return (
-    <div>
-      <section className="w-full flex items-center justify-center py-12 md:py-24 lg:py-32 bg-black text-white">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8">
-            JOIN OUR COMMUNITY
-          </h2>
-          <p className="text-center text-gray-400 mb-8 max-w-[600px] mx-auto">
-            STAY CONNECTER WITH &apos;ohh what!&apos; FOLLOW US ON SOCIAL MEDIA
-            FOR EXCLUSIVE OFFERS, STYLING TIPS, AND BEHIND-THE-SCENES CONTENT.
-          </p>
-          <div className="flex justify-center space-x-4">
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-white text-black hover:bg-gray-200"
-            >
-              <Instagram className="h-4 w-4" />
-              <span className="sr-only">Instagram</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-white text-black hover:bg-gray-200"
-            >
-              <Facebook className="h-4 w-4" />
-              <span className="sr-only">Facebook</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-white text-black hover:bg-gray-200"
-            >
-              <Twitter className="h-4 w-4" />
-              <span className="sr-only">Twitter</span>
-            </Button>
+    <div className="container mx-auto px-4 my-4">
+      <h1 className="text-[3.5rem] font-medium leading-[1.1] tracking-[-0.02em] text-black text-center my-2 py-4">
+        We Supported By
+      </h1>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="flex flex-col bg-[#F7F7F7] rounded-xl p-6 transition-all h-[200px] items-center justify-center"
+          >
+            <div className="flex items-center justify-center text-md font-medium leading-[1.1] tracking-[-0.02em] text-black">
+              {item.name}
+            </div>
+            <p className="text-center text-sm font-medium leading-[1.1] tracking-[-0.02em] text-black">
+              {item.desc}
+            </p>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
     </div>
   );
 };

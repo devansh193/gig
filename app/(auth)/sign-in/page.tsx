@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "sonner";
+//import { toast } from "sonner";
 import Logo from "@/components/logo-dark";
-import { Loader, Loader2, Mail, Lock } from "lucide-react";
+import { Loader2, Mail, Lock, Loader } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -19,8 +18,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { toast } from "sonner";
+import { signIn } from "next-auth/react";
 
 export default function SignIn() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -32,24 +34,25 @@ export default function SignIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+
     const toastId = toast("Signing in", {
       duration: 5000,
       icon: <Loader className="animate-spin" />,
     });
 
     try {
-      const result = await signIn("credentials", {
+      const response = await signIn("credentials", {
         redirect: false,
         email,
         password,
       });
 
-      if (result?.error) {
-        console.log(result.error);
-        toast.error(`${result.error}`, {
+      if (!response?.ok) {
+        toast.error(`${response?.error}|"Internal server error"`, {
           id: toastId,
           icon: "",
         });
@@ -102,9 +105,11 @@ export default function SignIn() {
                   <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     ref={inputRef}
                     placeholder="jhondoe@example.com"
+                    autoComplete="email"
                     required
                     disabled={loading}
                     className="pl-10 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"
@@ -122,8 +127,10 @@ export default function SignIn() {
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
                   <Input
                     id="password"
+                    name="password"
                     placeholder="********"
                     type={"password"}
+                    autoComplete="current-password"
                     required
                     disabled={loading}
                     className="pl-10 pr-10 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"

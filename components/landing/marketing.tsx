@@ -1,33 +1,103 @@
+import { Heart, ShoppingBag } from "lucide-react";
+import { Button } from "../ui/button";
+import Image from "next/image";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Label } from "../ui/label";
+
+const items = [
+  {
+    id: 1,
+    name: "Bag1",
+    src: "/bag1.jpeg",
+  },
+  {
+    id: 2,
+    name: "Bag2",
+    src: "/bag2.jpeg",
+  },
+  {
+    id: 3,
+    name: "Bag3",
+    src: "/bag3.jpeg",
+  },
+];
 export const Marketing = () => {
   return (
-    <div className="bg-[#F9FAFB] py-10">
-      <div className="flex justify-center items-center mx-auto px-4 py-8 max-w-7xl">
-        <div className="w-1/2 p-4 ">
-          <p className="text-md font-semibold text-gray-700">
-            AS THE ICONIC STREETS OF MILAN AND ROME HAVE LONG TAUGHT US,
-            &quot;FASHION IS NOT SOMETHING THAT EXISTS IN DRESSES ONLY. FASHION
-            IS IN THE SKY, IN THE STREET,&quot; AS COCO CHANEL ONCE SAID. AT OHH
-            WHAT, WE BELIEVE IN WEAVING THIS ETHOS INTO EVERY PRODUCT WE OFFER.
-            OUR COLLECTIONS INVITE YOU TO EXPLORE A WORLD WHERE GIFTS
-            AREN&apos;T JUST OBJECTS, BUT STORIES OF STYLE AND THOUGHTFULNESS.
-            INDULGE IN MOMENTS THAT EVOKE WONDER AND ELEVATE YOUR EVERYDAY WITH
-            OUR EXCLUSIVE RANGE, WHERE THE &apos;OHH&apos; ISN&apos;T JUST IN
-            THE NAME—IT&apos;S IN EVERY PIECE YOU OWN.
-          </p>
+    <div className="container mx-auto px-4 my-4">
+      <RadioGroup
+        defaultValue="all"
+        className="flex flex-wrap items-center justify-between gap-8 pb-8"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="all" id="all" className="h-5 w-5" />
+          <Label
+            htmlFor="all"
+            className="text-[3.5rem] font-medium leading-[1.1] tracking-[-0.02em] text-black"
+          >
+            All Collection
+          </Label>
         </div>
-        <div className="w-1/2 p-4 flex">
-          <p className="text-md font-semibold text-gray-700">
-            IN ANCIENT GREECE, BEAUTY WAS A VIRTUE, SOMETHING TO BE PURSUED AND
-            REVERED. AT THE HEART OF FASHION LIES A SIMILAR PURSUIT—A DESIRE TO
-            TRANSCEND THE ORDINARY, TO ADORN ONESELF IN A WAY THAT EXPRESSES NOT
-            JUST STYLE, BUT SOUL. OUR BAGS AT OHH WHAT CAPTURE THIS TIMELESS
-            PHILOSOPHY, MERGING CRAFTSMANSHIP WITH ELEGANCE. LIKE THE GODDESSES
-            OF OLD, THESE PIECES SERVE AS SYMBOLS OF GRACE AND STRENGTH,
-            TRANSFORMING FASHION INTO AN ART OF IDENTITY. EACH BAG TELLS A
-            STORY, EMBODYING BOTH THE PRACTICAL AND THE POETIC, REMINDING US
-            THAT TRUE BEAUTY IS FOUND IN THE DETAILS.**
-          </p>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="new" id="new" className="h-5 w-5" />
+          <Label
+            htmlFor="new"
+            className="text-[3.5rem] font-medium leading-[1.1] tracking-[-0.02em] text-black"
+          >
+            New Collection
+          </Label>
         </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="popular" id="popular" className="h-5 w-5" />
+          <Label
+            htmlFor="popular"
+            className="text-[3.5rem] font-medium leading-[1.1] tracking-[-0.02em] text-black"
+          >
+            Popular Collection
+          </Label>
+        </div>
+      </RadioGroup>
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="group relative bg-[#F3F3F3] rounded-xl p-6 transition-all"
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-medium">{item.name}</h3>
+                <p className="text-sm text-gray-600">₹195.00</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full hover:bg-white"
+                >
+                  <Heart className="h-4 w-4" />
+                  <span className="sr-only">Add to wishlist</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full hover:bg-white"
+                >
+                  <ShoppingBag className="h-4 w-4" />
+                  <span className="sr-only">Add to cart</span>
+                </Button>
+              </div>
+            </div>
+            <div className="aspect-square overflow-hidden">
+              <Image
+                src={item.src}
+                alt="Hobo Small Leather Bag"
+                width={400}
+                height={400}
+                className="h-full w-full rounded-xl object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -10,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import Logo from "@/components/logo-dark";
 
-import { Eye, EyeOff, Loader, Loader2, Lock, Mail, User } from "lucide-react";
+import { Eye, EyeOff, Loader2, Lock, Mail, User } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -20,8 +19,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { createUser } from "@/action/user";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,42 +34,29 @@ export default function SignUp() {
     inputRef.current?.focus();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const toastId = toast("Signing up", {
-      duration: 5000,
-      icon: <Loader className="animate-spin" />,
+    const toastId = toast.message("Creating user...", {
+      icon: <Loader2 className="animate-spin" />,
     });
-
+    setLoading(true);
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
-
-      if (result?.error) {
-        console.log(result.error);
-        toast.error(`${result.error}`, {
+      const response = await createUser(name, email, password);
+      if (response.success) {
+        toast.success(response.message, {
           id: toastId,
           icon: "",
         });
+        router.push("/sign-in");
       } else {
-        toast.success("Sign up successful.", {
-          icon: "",
+        toast.error(response.message, {
           id: toastId,
+          icon: "",
         });
-        router.push("/dashboard");
       }
     } catch (error) {
-      toast.error("An unexpected error occurred.", {
-        id: toastId,
-      });
-      console.error("Unexpected error:", error);
+      console.error(error);
+      toast.error("Failed to create user. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -108,8 +98,10 @@ export default function SignUp() {
                     id="name"
                     type="text"
                     ref={inputRef}
+                    value={name}
                     placeholder="John Doe"
                     required
+                    onChange={(e) => setName(e.target.value)}
                     disabled={loading}
                     className="pl-10 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"
                   />
@@ -129,6 +121,8 @@ export default function SignUp() {
                     type="email"
                     placeholder="jhondoe@example.com"
                     required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
                     className="pl-10 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"
                   />
@@ -148,6 +142,8 @@ export default function SignUp() {
                     placeholder="********"
                     type={showPassword ? "text" : "password"}
                     required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     disabled={loading}
                     className="pl-10 pr-10 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"
                   />

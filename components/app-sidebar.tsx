@@ -1,71 +1,154 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+"use client";
 
+import * as React from "react";
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+  ChevronDown,
+  Heart,
+  Home,
+  LogOut,
+  Package,
+  ShoppingBag,
+  Tag,
+  User,
+  User2,
+  Users,
+} from "lucide-react";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
-// Menu items.
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import Logo from "./logo-dark";
+
+// Menu items
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Categories",
+    url: "/categories",
+    icon: Tag,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "New Arrivals",
+    url: "/new-arrivals",
+    icon: Package,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Wishlist",
+    url: "/wishlist",
+    icon: Heart,
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "My Orders",
+    url: "/orders",
+    icon: ShoppingBag,
   },
 ];
 
-export function AppSidebar() {
+export default function Sidebar() {
+  const { data: session } = useSession();
+
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-md font-bold">
+    <aside className=" flex h-screen w-64 flex-col bg-[#F3F3F3] shadow-md rounded-md ml-4 mb-6 my-4">
+      <header className="border-b h-16 px-6 py-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="w-full justify-start px-0">
+              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                <Logo />
+              </div>
+              <span className="ml-2 font-semibold">OhhWhattt!</span>
+              <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56" align="start" sideOffset={5}>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <User className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Package className="mr-2 h-4 w-4" />
+              <span>Billing</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Users className="mr-2 h-4 w-4" />
+              <span>Team</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <ShoppingBag className="mr-2 h-4 w-4" />
+              <span>Subscription</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </header>
+      <ScrollArea className="flex-1 px-4 py-2">
+        <nav>
+          <h2 className="mb-2 text-lg font-semibold tracking-tight">
             Application
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter></SidebarFooter>
-    </Sidebar>
+          </h2>
+          <div className="space-y-1">
+            {items.map((item) => (
+              <Link
+                key={item.title}
+                href={item.url}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                <item.icon className="h-4 w-4" />
+                <span>{item.title}</span>
+              </Link>
+            ))}
+          </div>
+        </nav>
+      </ScrollArea>
+      <Separator />
+      <footer className="p-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="w-full justify-start">
+              <div className="mr-2 h-6 w-6 overflow-hidden rounded-full bg-muted">
+                <User2 />
+              </div>
+              <span>{session?.user?.name || "Guest"}</span>
+              <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56" align="end" sideOffset={5}>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Package className="mr-2 h-4 w-4" />
+                <span>Orders</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Log out</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </footer>
+    </aside>
   );
 }
