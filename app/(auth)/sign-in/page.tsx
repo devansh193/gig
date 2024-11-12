@@ -74,15 +74,15 @@ export default function SignIn() {
   };
 
   return (
-    <div className="h-screen grid grid-cols-1 md:grid-cols-2">
+    <div className=" grid grid-cols-1 md:grid-cols-2 bg-white">
       {/* Left Section (Logo) */}
-      <div className="hidden md:block lg:col-span-1 bg-neutral-950">
+      <div className="hidden md:block lg:col-span-1 bg-neutral-950 rounded-md my-4 ml-4 mr-2">
         <div className="min-h-screen flex items-center justify-center">
           <Logo />
         </div>
       </div>
       {/* Right Section (Form) */}
-      <div className="col-span-1 flex items-center justify-center px-4 sm:px-8 md:px-12 lg:px-16">
+      <div className="col-span-1 flex items-center justify-center px-4 md:px-12 lg:px-16 bg-[#F3F3F3] rounded-md my-4 ml-2 mr-4">
         <Card className="w-full max-w-md bg-white shadow-2xl">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center text-black">

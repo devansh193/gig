@@ -8,6 +8,7 @@ import {
   LogOut,
   Package,
   ShoppingBag,
+  ShoppingCart,
   Tag,
   User,
   User2,
@@ -38,11 +39,6 @@ const items = [
     icon: Home,
   },
   {
-    title: "Categories",
-    url: "/categories",
-    icon: Tag,
-  },
-  {
     title: "New Arrivals",
     url: "/new-arrivals",
     icon: Package,
@@ -56,6 +52,11 @@ const items = [
     title: "My Orders",
     url: "/orders",
     icon: ShoppingBag,
+  },
+  {
+    title: "Cart",
+    url: "/cart",
+    icon: ShoppingCart,
   },
 ];
 
@@ -71,7 +72,9 @@ export default function Sidebar() {
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
                 <Logo />
               </div>
-              <span className="ml-2 font-semibold">OhhWhattt!</span>
+              <span className="text-[1rem] font-medium leading-[1.1] tracking-[-0.02em] text-black">
+                OhhWhattt!
+              </span>
               <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
             </Button>
           </DropdownMenuTrigger>
@@ -99,9 +102,6 @@ export default function Sidebar() {
       </header>
       <ScrollArea className="flex-1 px-4 py-2">
         <nav>
-          <h2 className="mb-2 text-lg font-semibold tracking-tight">
-            Application
-          </h2>
           <div className="space-y-1">
             {items.map((item) => (
               <Link
