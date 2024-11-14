@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 //import { toast } from "sonner";
 import Logo from "@/components/logo-dark";
 import { Loader2, Mail, Lock, Loader } from "lucide-react";
@@ -61,7 +60,7 @@ export default function SignIn() {
           icon: "",
           id: toastId,
         });
-        router.push("/dashboard");
+        router.push("/shop");
       }
     } catch (error) {
       toast.error("An unexpected error occurred.", {
@@ -84,6 +83,22 @@ export default function SignIn() {
       {/* Right Section (Form) */}
       <div className="col-span-1 flex items-center justify-center px-4 md:px-12 lg:px-16 bg-[#F3F3F3] rounded-md my-4 ml-2 mr-4">
         <Card className="w-full max-w-md bg-white shadow-2xl">
+          <div
+            className="absolute inset-0 flex items-start justify-start overflow-hidden pointer-events-none"
+            aria-hidden="true"
+          >
+            <span className="text-[20vw] font-black text-black/5 whitespace-nowrap transform rotate-12">
+              OHHWHAT
+            </span>
+          </div>
+          <div
+            className="absolute inset-0 flex items-end justify-end overflow-hidden pointer-events-none"
+            aria-hidden="true"
+          >
+            <span className="text-[20vw] font-black text-black/5 whitespace-nowrap transform rotate-12">
+              OHHWHAT
+            </span>
+          </div>
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center text-black">
               Sign in to your account
@@ -136,15 +151,6 @@ export default function SignIn() {
                     className="pl-10 pr-10 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"
                   />
                 </div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="remember" disabled={loading} />
-                <label
-                  htmlFor="remember"
-                  className="text-sm text-gray-600 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Remember me
-                </label>
               </div>
               <Button
                 className="w-full bg-black hover:bg-gray-800 text-white"

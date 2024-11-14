@@ -58,7 +58,7 @@ const items = [
     image: ["/bag1.jpeg", "/bag2.jpeg", "/bag3.jpeg"],
   },
 ];
-export const Shop = () => {
+const Shop = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

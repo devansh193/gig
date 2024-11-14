@@ -23,7 +23,7 @@ const items = [
 ];
 export const Marketing = () => {
   return (
-    <div className="container mx-auto px-4 my-4">
+    <div className="container mx-auto px-4 mt-4 mb-2">
       <RadioGroup
         defaultValue="all"
         className="flex flex-wrap items-center justify-between gap-8 pb-8"

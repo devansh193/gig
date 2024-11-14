@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Heart, ShoppingCart } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -53,10 +54,12 @@ export const ProductCard = (
       <CardHeader className="p-0">
         <div className="relative">
           <AspectRatio ratio={1}>
-            <img
+            <Image
               src={images[currentImageIndex]}
               alt={`${name} - Image ${currentImageIndex + 1}`}
               className="object-cover w-full h-full transition-opacity duration-300"
+              height={100}
+              width={100}
             />
           </AspectRatio>
           <div className="absolute inset-0 flex items-center justify-between p-4">

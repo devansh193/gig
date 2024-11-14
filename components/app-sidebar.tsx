@@ -9,7 +9,6 @@ import {
   Package,
   ShoppingBag,
   ShoppingCart,
-  Tag,
   User,
   User2,
   Users,

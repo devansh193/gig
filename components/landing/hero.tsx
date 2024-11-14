@@ -1,12 +1,12 @@
 import { ArrowLeft, ArrowRight, Search } from "lucide-react";
 import { Button } from "../ui/button";
 
-const navItems = ["Men", "Women", "New", "Store", "Popular"];
+const navItems = ["Men", "Women", "New", "Store"];
 const navItems2 = ["About", "FAQs", "Cart"];
 export const Main = () => {
   return (
-    <div className="flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8 mb-4">
-      <div className="bg-white grid grid-cols-5 sm:grid-cols-10 w-full gap-x-2 gap-y-4">
+    <div className="flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8 mb-2">
+      <div className="bg-white grid grid-cols-5 sm:grid-cols-9 w-full gap-x-2 gap-y-4">
         {navItems.map((item) => (
           <div
             className="col-span-1 bg-neutral-100 flex items-center justify-center py-4 rounded-xl hover:cursor-pointer"
@@ -20,9 +20,8 @@ export const Main = () => {
             className="bg-neutral-100 flex-grow outline-none"
             placeholder="Search..."
           />
-          <Search className="ml-auto" />
+          <Search className="" />
         </div>
-
         {navItems2.map((item) => (
           <div
             className="col-span-1 bg-neutral-100 flex items-center justify-center py-2 rounded-xl hover:cursor-pointer"

@@ -34,7 +34,7 @@ export const CouponBanner = () => {
   );
 
   return (
-    <div className="bg-[#F3F3F3] py-6 my-2 mx-4 md:mx-10 rounded-xl">
+    <div className="bg-[#F3F3F3] py-6 mb-2 mx-4 md:mx-10 rounded-xl">
       <div ref={containerRef} className="flex overflow-hidden">
         <div className="flex animate-marquee">
           {content}
