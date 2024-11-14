@@ -82,15 +82,6 @@ export const Footer = () => {
           <h3 className="mb-6 text-lg font-medium">Menu</h3>
           <nav className="flex flex-col space-y-3">
             <Link className="text-gray-600 hover:text-gray-900" href="#">
-              Men
-            </Link>
-            <Link className="text-gray-600 hover:text-gray-900" href="#">
-              Women
-            </Link>
-            <Link className="text-gray-600 hover:text-gray-900" href="#">
-              Children
-            </Link>
-            <Link className="text-gray-600 hover:text-gray-900" href="#">
               Brand
             </Link>
             <Link className="text-gray-600 hover:text-gray-900" href="#">
@@ -104,9 +95,6 @@ export const Footer = () => {
         <div>
           <h3 className="mb-6 text-lg font-medium">Support</h3>
           <nav className="flex flex-col space-y-3">
-            <Link className="text-gray-600 hover:text-gray-900" href="#">
-              Shipping & Returns
-            </Link>
             <Link className="text-gray-600 hover:text-gray-900" href="#">
               FAQs
             </Link>

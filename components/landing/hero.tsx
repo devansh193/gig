@@ -50,7 +50,7 @@ export const Main = () => {
 
               <p className="text-lg text-black/80">
                 ↘ Discover the epitome of style and craftsmanship with our
-                curated leather bag collection.
+                curated bag collection.
               </p>
               <div>
                 <Button
