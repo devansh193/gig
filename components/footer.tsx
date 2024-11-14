@@ -17,7 +17,7 @@ export const Footer = () => {
             <br />
             THE LATEST RELEASES, OFFERS AND
             <br />
-            NEWS FROM BAGSTORE.COM
+            NEWS FROM OHHWHAT
           </h2>
           <div className="space-y-4">
             <div className="relative">

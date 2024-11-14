@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/components/app-sidebar";
 import ProductCard from "@/components/product-card";
-import { Menu } from "lucide-react";
+import { Menu, ShoppingBag } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -97,7 +97,7 @@ const Shop = () => {
       )}
       <div className={`flex-1 ${isMobile ? "ml-0" : "ml-[250px]"}`}>
         <div className="flex flex-col h-screen m-4">
-          <header className="top-0 h-16 py-3 border-b-2 border-gray-100 z-30 ml-10 bg-[#F3F3F3] md:ml-4 rounded-md">
+          <header className="top-0 flex items-center justify-between h-16 py-3 border-b-2 border-gray-100 z-30 ml-10 bg-[#F3F3F3] md:ml-4 rounded-md">
             <div className="container px-4 py-3 sm:px-6 lg:px-8">
               <Breadcrumb>
                 <BreadcrumbList>
@@ -110,6 +110,9 @@ const Shop = () => {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
+            </div>
+            <div>
+              <ShoppingBag className="mr-4" />
             </div>
           </header>
           <main className="relative p-4 sm:p-6 lg:p-8 bg-[#F3F3F3] ml-4 mt-4 rounded-md">

@@ -8,7 +8,6 @@ import {
   LogOut,
   Package,
   ShoppingBag,
-  ShoppingCart,
   User,
   User2,
   Users,
@@ -55,7 +54,7 @@ const items = [
   {
     title: "Cart",
     url: "/cart",
-    icon: ShoppingCart,
+    icon: ShoppingBag,
   },
 ];
 
@@ -63,7 +62,7 @@ export default function Sidebar() {
   const { data: session } = useSession();
 
   return (
-    <aside className=" flex h-screen w-64 flex-col bg-[#F3F3F3] shadow-md rounded-md ml-4 mb-6 my-4">
+    <aside className="flex h-screen w-64 flex-col bg-[#F3F3F3] shadow-md rounded-md ml-4 mb-6 my-4">
       <header className="border-b h-16 px-6 py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
