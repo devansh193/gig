@@ -117,9 +117,6 @@ const Shop = () => {
           </header>
           <main className="relative p-4 sm:p-6 lg:p-8 bg-[#F3F3F3] ml-4 mt-4 rounded-md">
             <div className="relative z-10">
-              <h1 className="text-[2.5rem] font-medium leading-[1.1] tracking-[-0.02em] text-black mb-2">
-                Shop
-              </h1>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {items.map((item) => (
                   <ProductCard

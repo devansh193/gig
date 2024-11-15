@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Heart, ShoppingCart } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShoppingBag } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -50,7 +50,7 @@ export const ProductCard = (
   };
 
   return (
-    <Card className="max-w-[300px] overflow-hidden">
+    <Card className="max-w-[300px] overflow-hidden rounded-none">
       <CardHeader className="p-0">
         <div className="relative">
           <AspectRatio ratio={1}>
@@ -70,20 +70,7 @@ export const ProductCard = (
               className="rounded-full bg-background/80"
             >
               <span className="sr-only">Previous image</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
+              <ArrowLeft />
             </Button>
             <Button
               variant="outline"
@@ -91,21 +78,7 @@ export const ProductCard = (
               onClick={nextImage}
               className="rounded-full bg-background/80"
             >
-              <span className="sr-only">Next image</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                />
-              </svg>
+              <ArrowRight />
             </Button>
           </div>
           <div className="absolute top-2 left-2 flex flex-col gap-2">
@@ -115,12 +88,14 @@ export const ProductCard = (
         </div>
       </CardHeader>
       <CardContent className="p-4">
-        <CardTitle className="line-clamp-2">{name}</CardTitle>
-        <div className="mt-2 flex items-center justify-between">
-          <div className="flex items-baseline gap-2">
+        <CardTitle className="text-center p-2 text-sm font-thin">
+          {name}
+        </CardTitle>
+        <div className="mt-2 flex items-center justify-center">
+          <div className="flex items-center justify-center gap-2 text-sm">
             {isOnSale && salePrice ? (
               <>
-                <span className="text-xl font-bold">
+                <span className="text-sm font-bold">
                   ${salePrice.toFixed(2)}
                 </span>
                 <span className="text-sm text-muted-foreground line-through">
@@ -128,22 +103,15 @@ export const ProductCard = (
                 </span>
               </>
             ) : (
-              <span className="text-xl font-bold">${price.toFixed(2)}</span>
+              <span className="text-sm">${price.toFixed(2)}</span>
             )}
           </div>
-          <Button variant="outline" size="icon" className="rounded-full">
-            <Heart className="h-4 w-4" />
-            <span className="sr-only">Add to wishlist</span>
-          </Button>
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0 flex gap-2">
-        <Button className="flex-1">
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          Add to Cart
-        </Button>
-        <Button variant="secondary" className="flex-1">
-          Buy Now
+        <Button className="w-full rounded-none">
+          <ShoppingBag className=" mr-2 h-4 w-4" />
+          Add to bag
         </Button>
       </CardFooter>
     </Card>
