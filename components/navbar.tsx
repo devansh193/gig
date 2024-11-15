@@ -132,7 +132,6 @@ export default function Navbar() {
                                   href={subItem.href}
                                   className="w-full px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md flex items-center transition-colors"
                                 >
-                                  <span className="w-2 h-2 bg-primary rounded-full mr-2" />
                                   {subItem.name}
                                 </Link>
                               </DropdownMenuItem>
