@@ -15,7 +15,7 @@ const footerItems = [
   },
 ];
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className="bg-[#F3F3F3] px-4 py-8 md:px-6 rounded-xl mx-4 md:mx-10 mb-4">
       <div className="mx-auto max-w-6xl">
@@ -38,6 +38,16 @@ export default function Footer() {
           ))}
         </div>
         <div className="mt-8 border-t border-gray-200 pt-8 text-center">
+          <Link
+            href="https://dub.sh/devansh-portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className="text-xs text-gray-400 mb-2">
+              Designed and developed by Devansh
+            </p>
+          </Link>
+
           <p className="text-xs text-gray-500">
             © 2024 OHHWHAT. All rights reserved.
           </p>
@@ -45,4 +55,5 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+export default Footer;
